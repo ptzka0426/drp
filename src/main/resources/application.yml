@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    #    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://8.129.51.229:3306/k?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: k
+    password: longtao
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+    servlet:
+      multipart:
+        max-file-size: 10MB
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml  #mybatis指定数据库xml文件
+  typeAliasesPackage: com.example.drp.Entity      #指定实体类
+  configuration:
+    map-underscore-to-camel-case: false  #关闭驼峰，实体类的 *_*映射
+    auto-mapping-behavior: full
+    use-generated-keys: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      #\u4E3B\u952E\u7C7B\u578B  id_worker:"\u6570\u636E\u5E93ID\u81EA\u589E" auto+@TableId:"\u53EF\u4EE5\u83B7\u5F97\u4E3B\u952E\u503C"
+      id-type: auto
+      #\u5B57\u6BB5\u7B56\u7565 0:"\u5FFD\u7565\u5224\u65AD",1:"\u975E NULL \u5224\u65AD"),2:"\u975E\u7A7A\u5224\u65AD"
+      field-strategy: not_empty
+      #\u9A7C\u5CF0\u4E0B\u5212\u7EBF\u8F6C\u6362
+      column-underline: true
+      #\u6570\u636E\u5E93\u5927\u5199\u4E0B\u5212\u7EBF\u8F6C\u6362
+      #capital-mode: true
+      #\u903B\u8F91\u5220\u9664\u914D\u7F6E
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+    refresh: true
+
