@@ -4,10 +4,11 @@ server:
 spring:
   datasource:
     #    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://8.129.51.229:3306/k?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: k
-    password: longtao
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://81.70.180.73:3306/br_bangong?characterEncoding=utf-8
+    #url: jdbc:mysql://8.129.51.229:3306/k?characterEncoding=utf-8
+    username: boran1
+    password: boran123
     dbcp2:
       min-idle: 5
       initial-size: 5
@@ -17,25 +18,18 @@ spring:
       multipart:
         max-file-size: 10MB
 mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml  #mybatisÖ¸¶¨Êı¾İ¿âxmlÎÄ¼ş
-  typeAliasesPackage: com.example.drp.Entity      #Ö¸¶¨ÊµÌåÀà
+  mapper-locations: classpath:mapper/*.xml  #mybatisæŒ‡å®šæ•°æ®åº“xmlæ–‡ä»¶
+  typeAliasesPackage: com.example.drp.Entity      #æŒ‡å®šå®ä½“ç±»
   configuration:
-    map-underscore-to-camel-case: false  #¹Ø±ÕÍÕ·å£¬ÊµÌåÀàµÄ *_*Ó³Éä
+    map-underscore-to-camel-case: false  #å…³é—­é©¼å³°ï¼Œå®ä½“ç±»çš„ *_*æ˜ å°„
     auto-mapping-behavior: full
     use-generated-keys: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
-      #\u4E3B\u952E\u7C7B\u578B  id_worker:"\u6570\u636E\u5E93ID\u81EA\u589E" auto+@TableId:"\u53EF\u4EE5\u83B7\u5F97\u4E3B\u952E\u503C"
       id-type: auto
-      #\u5B57\u6BB5\u7B56\u7565 0:"\u5FFD\u7565\u5224\u65AD",1:"\u975E NULL \u5224\u65AD"),2:"\u975E\u7A7A\u5224\u65AD"
       field-strategy: not_empty
-      #\u9A7C\u5CF0\u4E0B\u5212\u7EBF\u8F6C\u6362
       column-underline: true
-      #\u6570\u636E\u5E93\u5927\u5199\u4E0B\u5212\u7EBF\u8F6C\u6362
-      #capital-mode: true
-      #\u903B\u8F91\u5220\u9664\u914D\u7F6E
       logic-delete-value: 0
       logic-not-delete-value: 1
     refresh: true
-

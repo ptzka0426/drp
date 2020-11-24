@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博冉科技后台管理系统</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="json/index.js"></script>
+
+</head>
+
+<body>
+    <!-- 顶部导航了 -->
+    <div class="nav_top">
+        <ul class="top_box">
+            <li class="top_left">
+                <h2><a href="">博冉科技后台管理系统</a></h2>
+            </li>
+            <li class="top_right"><a href="">账户设置</a></li>
+            <li class="top_right"><a href='javascript:alert("退出登陆成功！")'>退出登录</a></li>
+            <div class="clear"></div>
+        </ul>
+
+        <!-- 右边菜单栏 -->
+    </div>
+    <div class="nav_left">
+        <ul class="left_box">
+            <li class="left_li">
+                <a href="">公司管理</a>
+                <ul>
+                    <li><a href="../后台工具/index.html">添加公司</a></li>
+                    <li><a href="../后台工具/修改公司.html">修改公司</a></li>
+                </ul>
+            </li>
+
+
+            <li class="left_li">
+                <a href="">部门管理</a>
+                <ul>
+                    <li><a href="">增加部门</a></li>
+                    <li><a href="">修改部门</a></li>
+                    <li><a href="">职工管理</a></li>
+                    <li><a href="">分配职员</a></li>
+                </ul>
+            </li>
+
+            <li class="left_li">
+                <a href="">项目进度</a>
+                <ul>
+                    <li><a href="">增加项目</a></li>
+                    <li><a href="">提交进度</a></li>
+                    <li><a href="">查看进度</a></li>
+                    <li><a href="">删除进度</a></li>
+                </ul>
+            </li>
+
+            <li class="left_li">
+                <a href="">资产管理</a>
+                <ul>
+                    <li><a href="">支出</a></li>
+                    <li><a href="">收入</a></li>
+                    <li><a href="">查询明细</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <form action="" class="adddepartment">
+        <div class="deapartment-color">
+            *部门名称：<input type="text" class="departmentform" id="departmentform-a" placeholder="请输入部门名称">
+        </div>
+        <div class="deapartment-color">
+            *部门主管：<input type="text" class="departmentform" id="departmentform-b " placeholder="请输入部门主管">
+        </div>
+        <div class="deapartment-color">
+            *邮箱地址：<input type="email" class="departmentform" id="departmentform-c" placeholder="请输入邮箱地址">
+        </div>
+        <div class="deapartment-color">
+            *上级部门：<input type="text" class="departmentform" id="departmentform-d" placeholder="请输入上级部门">
+        </div>
+        <div class="deapartment-color">
+            *部门权限：<input type="text" class="departmentform" id="departmentform-e" placeholder="请输入部门权限">
+        </div>
+        <div class="deapartment-color">
+            *确认密码：<input type="password" class="departmentform" id="departmentform-f" placeholder="请输入密码">
+        </div>
+        <div>
+            备注信息：<textarea class="departmentform" id="departmentform-g" cols="15" rows="5"></textarea>
+        </div>
+        <div>
+            <input type="submit" class="departmentform" id="departmentform-l" style="width: 100px;">
+        </div>
+    </form>
+</body>
+
+</html>
