@@ -16,7 +16,7 @@ spring:
       max-wait-millis: 200
     servlet:
       multipart:
-        max-file-size: 10MB
+        max-file-size: 100MB
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml  #mybatis指定数据库xml文件
   typeAliasesPackage: com.example.drp.Entity      #指定实体类
@@ -33,3 +33,5 @@ mybatis-plus:
       logic-delete-value: 0
       logic-not-delete-value: 1
     refresh: true
+
+#自定义的配置

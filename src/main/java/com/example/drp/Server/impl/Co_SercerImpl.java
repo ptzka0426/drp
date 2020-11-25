@@ -24,4 +24,9 @@ public class Co_SercerImpl extends ServiceImpl<CoMapper, Co> implements Co_Serve
     public List<Map<Object,Object>> colist() {
         return coMapper.colist();
     }
+
+    @Override
+    public int size() {
+        return coMapper.size();
+    }
 }

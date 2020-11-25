@@ -6,4 +6,7 @@
     <select id="colist" resultType="java.util.HashMap">
           select COID,COName from br_co
     </select>
+    <select id="size" resultType="java.lang.Integer">
+        select count(*) from br_co
+    </select>
 </mapper>

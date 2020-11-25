@@ -12,4 +12,5 @@ import java.util.Map;
  */
 public interface Co_Server extends IService<Co> {
     List<Map<Object,Object>> colist();
+    int size();
 }

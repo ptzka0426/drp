@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @Author LT
  * @create 2020-11-23 17:40
@@ -17,4 +20,14 @@ import org.springframework.stereotype.Service;
 public class DepartmentServerImpl extends ServiceImpl<DepartmentMapper, Department> implements DepartmentServer {
     @Autowired
     private DepartmentMapper departmentMapper;
+
+    @Override
+    public List<Map<String, Object>> bumen(int coid) {
+        return departmentMapper.bumen(coid);
+    }
+
+    @Override
+    public List<Map<String, Object>> zhuguan(int coid) {
+        return departmentMapper.zhuguan(coid);
+    }
 }

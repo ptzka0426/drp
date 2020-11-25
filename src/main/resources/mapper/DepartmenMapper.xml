@@ -3,5 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.drp.Mapper.DepartmentMapper">
-
+    <select id="bumen" resultType="java.util.Map">
+        select did,dname from br_department where coid=#{coid}
+    </select>
+    <select id="zhuguan" resultType="java.util.Map">
+        select uid,uname from br_user where coid=#{coid}
+    </select>
 </mapper>

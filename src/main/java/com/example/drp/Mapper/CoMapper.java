@@ -14,4 +14,5 @@ import java.util.Map;
 @Mapper
 public interface CoMapper extends BaseMapper<Co> {
   List<Map<Object,Object>> colist();
+  int size();
 }

@@ -1,5 +1,6 @@
 package com.example.drp.Entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ import java.util.Date;
 public class Co implements Serializable {
     private static final long serialVersionUID = 1L;
     //公司ID
+    @TableId
     private Integer coid;
     //公司名称
     private String coname;
