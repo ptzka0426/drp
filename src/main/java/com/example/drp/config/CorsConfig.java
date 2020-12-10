@@ -1,4 +1,4 @@
-package com.example.drp.Interceptor;
+package com.example.drp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.web.filter.CorsFilter;
  * @Author LT
  * @create 2020-11-20 17:25
  */
-@Configuration
+/*@Configuration*/
 public class CorsConfig {
     private CorsConfiguration buildConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();

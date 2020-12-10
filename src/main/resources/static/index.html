@@ -4,125 +4,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>博冉科技后台管理系统</title>
-    <link rel="stylesheet" href="css/index.css">
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script type="text/javascript" src="json/index.js"></script>
+    <title>博冉后台管理系统</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
 
+        body {
+            background: url("image/backgroud.jpg");
+            background-size: cover;
+            /* 背景覆盖 */
+            padding: 0;
+            margin: 0;
+        }
+
+        .login {
+            position: absolute;
+            /* 绝对定位 */
+            top: 50%;
+            left: 50%;
+            /* 高和定同事设置50%是为了同时水平居中 */
+            transform: translate(-50%, -50%);
+            /*块元素百分比居中*/
+            width: 300px;
+            height: 300px;
+            padding: 50px;
+            background: rgb(245, 245, 245, 0.4);
+            /* 背景透明度是0.4 */
+            border-radius: 30px;
+        }
+
+        .title {
+            margin: 0 0 30px;
+            padding: 0;
+            color: black;
+            text-align: center;
+        }
+
+        .login .midden {
+            position: relative;
+        }
+
+        .login .midden .inputbox {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            border: none;
+        }
+
+        .login input[type="submit"] {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            width: 80px;
+            height: 50px;
+            cursor: pointer;
+            padding: 15px 20px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body>
-<!-- 顶部导航了 -->
-<div class="nav_top">
-    <ul class="top_box">
-        <li class="top_left">
-            <h2>< a href="">博冉科技后台管理系统</ a></h2>
-        </li>
-        <li class="top_right">< a href="">账户设置</ a></li>
-        <li class="top_right">< a href="">退出登录</ a></li>
-        <div class="clear"></div>
-    </ul>
-
-    <!-- 右边菜单栏 -->
+<div class="login">
+    <div class="title">
+        <h2>博冉后台管理系统</h2>
+    </div>
+    <div class="midden">
+        <input class="inputbox" type="text" name="username" placeholder="请输入用户名">
+        <input class="inputbox" type="password" name="password" placeholder="请输入密码">
+    </div>
+    <input class="submitbtuuon" type="submit" value="登陆">
 </div>
-<div class="nav_left">
-    <ul class="left_box">
-        <li class="left_li">
-            < a href="">公司管理</ a>
-        <ul>
-            <li>< a href="">添加公司</ a></li>
-            <li>< a href="">修改公司</ a></li>
-            <li>< a href="">删除公司</ a></li>
-        </ul>
-        </li>
-
-
-        <li class="left_li">
-            < a href="">部门管理</ a>
-        <ul>
-            <li>< a href="">增加部门</ a></li>
-            <li>< a href="">修改部门</ a></li>
-            <li>< a href="">职工管理</ a></li>
-            <li>< a href="">分配职员</ a></li>
-        </ul>
-        </li>
-
-        <li class="left_li">
-            < a href="">项目进度</ a>
-        <ul>
-            <li>< a href="">增加项目</ a></li>
-            <li>< a href="">提交进度</ a></li>
-            <li>< a href="">查看进度</ a></li>
-            <li>< a href="">删除进度</ a></li>
-        </ul>
-        </li>
-
-        <li class="left_li">
-            < a href="">资产管理</ a>
-        <ul>
-            <li>< a href="">支出</ a></li>
-            <li>< a href="">收入</ a></li>
-            <li>< a href="">查询明细</ a></li>
-        </ul>
-        </li>
-
-    </ul>
-</div>
-
-<form action="" class="addcompany">
-    <div>
-        *公司名称：<input type="text" class="formcontrol" id="addcompany-a" placeholder="请输入你的公司名称">
-    </div>
-    <div>
-        电话：<input type="text" class="formcontrol" id="addcompany-b" placeholder="请输入你的电话">
-    </div>
-    <div>
-        邮箱：<input type="text" class="formcontrol" id="addcompany-c" placeholder="请输入你的邮箱">
-    </div>
-    <div>
-        营业执照：<input type="" class="formcontrol" placeholder="请上你的传文件">
-        <input type="hidden" id="img_url">
-        <input type="file" onchange="showImg()" id="img_file">< img src="" alt="" id="img_id" style="width: px">
-    </div>
-    <div>
-        公司地址：<input type="text" class="formcontrol" id="addcompany-d" placeholder="请输入你的公司地址">
-    </div>
-    <div>
-        是否有上级公司：
-        <input type="radio" name="sex" value="0">是
-        <input type="radio" name="sex" value="0">否
-    </div>
-    <input type="submit" class="formcontrol" id="addcompany-e" style="width: 100px;">
-</form>
 </body>
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script src="./jquery.cookie.js"></script>
 <script>
-    // 添加公司
-    $(function() {
-        $("#addcompany-e").click(function() {
+    $(function () {
+        $(".submitbtuuon").click(function () {
             //var ins=$("#ins").val();
             $.ajax({
-                url: "http://192.168.2.6:1088/save", //要请求的服务器url
+                url: "http://81.70.180.73:1088/login", //要请求的服务器url
                 data: {
-                    "coname": $("#addcompany-a").val(),
-                    "cotell": $("#addcompany-b").val(),
-                    "coemail": $("#addcompany-c").val(),
-                    "coadress": $("#addcompany-d").val(),
+                    "yhm": $("input[name='username']").val(),
+                    "password": $("input[name='password']").val(),
                 }, //第一个name对应的是后端request.getParameter("name")的name、第二个name对应的是此js中的var name = $("#name").val();的name
                 async: true, //是否是异步请求
-                cache: false, //是否缓存结果
+                cache: true, //是否缓存结果
                 type: "POST", //请求方式
+                xhrFields:{
+                    withCredentials:true,//cookie
+                },
                 dataType: "json", //服务器返回什么类型数据 text xml javascript json(javascript对象)
-                success: function(result) { //函数会在服务器执行成功后执行，result就是服务器返回结果
-                    if (result) {
-                        //跳转页面
-                        alert("成功");
-                        /*window.location.href = 'index.html';*/
+                success: function (result) { //函数会在服务器执行成功后执行，result就是服务器返回结果
+                    if (result != 0) {
+                        // window.location.href = 'index.html';
+                        var cookies = $.cookie("admin");
+                        alert(cookies);
                     } else {
                         alert("账号用户名错误！");
                     }
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function (jqXHR, textStatus, errorThrown) {
                 }
             });
         });

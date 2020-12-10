@@ -6,12 +6,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.drp.Entity.Co;
 import com.example.drp.Server.Co_Server;
 import com.example.drp.Util.FTPUtil;
+import com.example.drp.common.response.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 import java.util.*;
@@ -27,7 +27,7 @@ public class Co_Controller {
 
     /*新增*/
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public boolean save(Co co) {
+    public Result save(Co co) {
        /* Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
@@ -44,8 +44,16 @@ public class Co_Controller {
 
         co.setUupdate(new Date());
         co.setUflag('0');
-        boolean bool = co_server.save(co);
-        return bool;
+        try {
+            boolean b = co_server.save(co);
+            if (b) {
+                return Result.SUCCESS();
+            } else {
+                return Result.FAIL();
+            }
+        }catch (Exception e){
+            return Result.FAIL();
+        }
     }
 
     /*分页查询*/
@@ -94,8 +102,23 @@ public class Co_Controller {
     }
 
     //文件上传
-    @RequestMapping(value = "/file", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/file", method = RequestMethod.POST)
     public boolean add(String url) throws IOException {
         return FTPUtil.addFtp(url);
+    }*/
+    @RequestMapping(value = "files", method = RequestMethod.POST)
+    public Result dome1(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws Exception{
+        //file对象名记得和前端name属性值一致
+        System.out.println(file.getOriginalFilename());
+        try {
+            boolean b =  FTPUtil.addFtp(file);
+            if (b) {
+                return Result.SUCCESS();
+            } else {
+                return Result.FAIL();
+            }
+        }catch (Exception e){
+            return Result.FAIL();
+        }
     }
 }

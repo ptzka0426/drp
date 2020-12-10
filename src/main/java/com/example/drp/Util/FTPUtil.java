@@ -12,7 +12,7 @@ import java.io.InputStream;
 
 /**
  * @Author LT
- * @create 2020-11-24 15:00
+ * @create 2020-12-2 15:00
  */
 public class FTPUtil {
     //ip地址
@@ -71,11 +71,11 @@ public class FTPUtil {
     }
 
     //实现
-    public static boolean addFtp(String url) throws IOException {
+    public static boolean addFtp(MultipartFile file) throws IOException {
         //@RequestParam("file") MultipartFile file
-        File files = new File(url);
-        FileInputStream inputStreams = new FileInputStream(files);
-        MultipartFile file = new MockMultipartFile("file", files.getName(), "*/plain", inputStreams);
+        //File files = new File(url);
+        //FileInputStream inputStreams = new FileInputStream(files);
+        //MultipartFile file = new MockMultipartFile("file", files.getName(), "*/plain", inputStreams);
 
         //获取上传的文件流
         InputStream inputStream=file.getInputStream();
@@ -91,4 +91,25 @@ public class FTPUtil {
         boolean fileBool=FTPUtil.uploadFile(finalName,inputStream);
         return fileBool;
     }
+//    public static boolean addFtp(String url) throws IOException {
+//        //@RequestParam("file") MultipartFile file
+//        File files = new File(url);
+//        FileInputStream inputStreams = new FileInputStream(files);
+//        MultipartFile file = new MockMultipartFile("file", files.getName(), "*/plain", inputStreams);
+//
+//        //获取上传的文件流
+//        InputStream inputStream=file.getInputStream();
+//        //获取上传的文件名  xxxx.xx
+//        String filename=file.getOriginalFilename();
+//        //截取后缀  .oo
+//        String suffix=filename.substring(filename.lastIndexOf("."));
+//        //截取文件名字   ooo.    存在乱码待解决
+//        String name=filename.substring(0,filename.lastIndexOf("."));
+//        //文件名+使用时间戳拼接后缀，生成一个不重复的文件名
+//        String finalName=System.currentTimeMillis()+suffix;
+//        //调用自定义的FTP工具类上传文件
+//        boolean fileBool=FTPUtil.uploadFile(finalName,inputStream);
+//        return fileBool;
+//    }
+
 }

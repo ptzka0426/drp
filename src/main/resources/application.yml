@@ -1,5 +1,7 @@
+
 server:
   port: 8080
+#    context-path: /drp
 
 spring:
   datasource:
@@ -14,9 +16,10 @@ spring:
       initial-size: 5
       max-total: 5
       max-wait-millis: 200
-    servlet:
-      multipart:
-        max-file-size: 100MB
+  servlet:
+    multipart:
+      max-file-size: 1050MB
+      max-request-size: 1050MB
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml  #mybatis指定数据库xml文件
   typeAliasesPackage: com.example.drp.Entity      #指定实体类
@@ -34,4 +37,15 @@ mybatis-plus:
       logic-not-delete-value: 1
     refresh: true
 
+##jwt配置
+audience:
+  # 代表这个JWT的接收对象,存入audience
+  clientId: 098f6bcd4621d373cade4e832627b4f6
+  # 密钥, 经过Base64加密, 可自行替换
+  base64Secret: MDk4ZjZiY2Q0NjIxZDM3M2NhZGU0ZTgzMjYyN2I0ZjY=
+  # JWT的签发主体，存入issuer
+  name: restapiuser
+  # 过期时间，时间戳
+  expiresSecond: 172800
 #自定义的配置
+
