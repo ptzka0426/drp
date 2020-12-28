@@ -51,14 +51,14 @@ public class Co_Controller {
             } else {
                 return Result.FAIL();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return Result.FAIL();
         }
     }
 
-    /*分页查询*/
+    /*分页查询  需要配置MybatisPlusConfig*/
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public List<Co> list(int pageNo, int pageSize, int desc) {
+    public Result list(int pageNo, int pageSize, int desc) {
         IPage<Co> page = new Page<>(pageNo, pageSize);
         QueryWrapper<Co> wrapper = new QueryWrapper<>();
         /* Co co = new Co();
@@ -69,36 +69,72 @@ public class Co_Controller {
         } else {
             wrapper.orderByDesc("uupdate");
         }
-        co_server.page(page, wrapper).getRecords();
+        try {
+            return Result.SUCCESS(co_server.page(page, wrapper).getRecords());
+        } catch (Exception e) {
+            return Result.FAIL();
+        }
+        //co_server.page(page, wrapper).getRecords();
         //List<Co> cos= (List<Co>) JSONArray.parse(co_server.page(page,wrapper).toString());
-        return co_server.page(page, wrapper).getRecords();
+        //return co_server.page(page, wrapper).getRecords();
     }
 
     @RequestMapping(value = "/size", method = RequestMethod.POST)
-    public int list() {
-
-        return co_server.size();
+    public Result list() {
+        try {
+            int b =  co_server.size();
+            if (b!=0) {
+                return Result.SUCCESS(b);
+            } else {
+                return Result.FAIL();
+            }
+        } catch (Exception e) {
+            return Result.FAIL();
+        }
     }
 
     /*删除*/
     @RequestMapping(value = "/del", method = RequestMethod.POST)
-    public boolean del(int id) {
+    public Result del(int id) {
         Map<String, Object> map = new HashMap<>();
         map.put("coid", id);
-        return co_server.removeById(id);
-        //co_server.removeByMap(map);
+        try {
+            boolean b = co_server.removeById(id);
+            if (b) {
+                return Result.SUCCESS();
+            } else {
+                return Result.FAIL();
+            }
+        } catch (Exception e) {
+            return Result.FAIL();
+        }
     }
 
     /*修改*/
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public boolean update(Co co) {
-        return co_server.updateById(co);
+    public Result update(Co co) {
+        try {
+            boolean b = co_server.updateById(co);
+            if (b) {
+                return Result.SUCCESS();
+            } else {
+                return Result.FAIL();
+            }
+        } catch (Exception e) {
+            return Result.FAIL();
+        }
+        //return co_server.updateById(co);
     }
 
     /*获取全部的公司名称和id    下拉列表*/
     @RequestMapping(value = "/listselect", method = RequestMethod.POST)
-    public List<Map<Object, Object>> select() {
-        return co_server.colist();
+    public Result select() {
+        try {
+            return Result.SUCCESS(co_server.colist());
+        } catch (Exception e) {
+            return Result.FAIL();
+        }
+/*        return co_server.colist();*/
     }
 
     //文件上传
@@ -107,17 +143,17 @@ public class Co_Controller {
         return FTPUtil.addFtp(url);
     }*/
     @RequestMapping(value = "files", method = RequestMethod.POST)
-    public Result dome1(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws Exception{
+    public Result dome1(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws Exception {
         //file对象名记得和前端name属性值一致
-        System.out.println(file.getOriginalFilename());
+        //System.out.println(file.getOriginalFilename());
         try {
-            boolean b =  FTPUtil.addFtp(file);
-            if (b) {
-                return Result.SUCCESS();
+            Result b = FTPUtil.addFtp(file);
+            if (b.getCode() == 0) {
+                return Result.SUCCESS("http://81.70.180.73:8829/" + b.getData());
             } else {
                 return Result.FAIL();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return Result.FAIL();
         }
     }

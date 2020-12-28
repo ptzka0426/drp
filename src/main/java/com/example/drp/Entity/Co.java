@@ -33,6 +33,8 @@ public class Co implements Serializable {
     private String coemail;
     //公司地址
     private String coadress;
+    //公司营业执照
+    private String coimg;
     //删除标志（前端不用管）
     private char uflag;
     //更新日期（前端不用管）

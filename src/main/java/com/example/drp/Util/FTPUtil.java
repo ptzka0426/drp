@@ -1,5 +1,6 @@
 package com.example.drp.Util;
 
+import com.example.drp.common.response.Result;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.springframework.mock.web.MockMultipartFile;
@@ -42,6 +43,7 @@ public class FTPUtil {
                 ftp.disconnect();
                 return false;
             }
+            ftp.setControlEncoding("GBK");
             //设置文件类型                二进制
             ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
             //创建文件夹
@@ -71,26 +73,31 @@ public class FTPUtil {
     }
 
     //实现
-    public static boolean addFtp(MultipartFile file) throws IOException {
+    public static Result addFtp(MultipartFile file) throws IOException {
         //@RequestParam("file") MultipartFile file
         //File files = new File(url);
         //FileInputStream inputStreams = new FileInputStream(files);
         //MultipartFile file = new MockMultipartFile("file", files.getName(), "*/plain", inputStreams);
 
         //获取上传的文件流
-        InputStream inputStream=file.getInputStream();
+        InputStream inputStream = file.getInputStream();
         //获取上传的文件名  xxxx.xx
-        String filename=file.getOriginalFilename();
+        String filename = file.getOriginalFilename();
         //截取后缀  .oo
-        String suffix=filename.substring(filename.lastIndexOf("."));
+        String suffix = filename.substring(filename.lastIndexOf("."));
         //截取文件名字   ooo.    存在乱码待解决
-        String name=filename.substring(0,filename.lastIndexOf("."));
+        String name = filename.substring(0, filename.lastIndexOf("."));
         //文件名+使用时间戳拼接后缀，生成一个不重复的文件名
-        String finalName=System.currentTimeMillis()+suffix;
+        String finalName = System.currentTimeMillis() + suffix;
         //调用自定义的FTP工具类上传文件
-        boolean fileBool=FTPUtil.uploadFile(finalName,inputStream);
-        return fileBool;
+        boolean fileBool = FTPUtil.uploadFile(finalName, inputStream);
+        if (fileBool) {
+            return Result.SUCCESS(finalName);
+        } else {
+            return Result.FAIL();
+        }
     }
+
 //    public static boolean addFtp(String url) throws IOException {
 //        //@RequestParam("file") MultipartFile file
 //        File files = new File(url);
