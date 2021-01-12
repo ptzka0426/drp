@@ -142,6 +142,14 @@ public class Co_Controller {
     public boolean add(String url) throws IOException {
         return FTPUtil.addFtp(url);
     }*/
+
+    /**
+     *
+     * @param request
+     * @param file
+     * @return 文件上传
+     * @throws Exception
+     */
     @RequestMapping(value = "files", method = RequestMethod.POST)
     public Result dome1(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws Exception {
         //file对象名记得和前端name属性值一致
